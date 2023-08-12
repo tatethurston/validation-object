@@ -1,0 +1,34 @@
+{
+  "name": "PACKAGE_NAME",
+  "version": "0.0.1",
+  "description": "PACKAGE_DESCRIPTION",
+  "license": "MIT",
+  "author": "Tate <tatethurston@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tatethurston/PACKAGE_NAME"
+  },
+  "scripts": {
+    "build:commonjs": "true",
+    "build:module": "tsc",
+    "clean": "rm -rf dist",
+    "package:build": "pnpm run clean && pnpm run build:commonjs && pnpm run build:module && pnpm run package:prune",
+    "package:prune": "find dist -name *test* -delete",
+    "typecheck": "tsc --noEmit"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "dependencies": {},
+  "keywords": [],
+  "main": "./cjs/index.js",
+  "module": "./index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./index.js",
+      "module": "./index.js",
+      "default": "./cjs/index.js"
+    }
+  }
+}
