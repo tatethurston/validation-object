@@ -55,9 +55,9 @@ describe("ValidationObject", () => {
     class Subclass extends ValidationObject {
       name: string;
 
-      constructor(params: { name: string }) {
+      constructor(attrs: { name: string }) {
         super();
-        this.name = params.name;
+        this.name = attrs.name;
       }
 
       validation() {
@@ -137,9 +137,9 @@ describe("ValidationObject", () => {
       class Subclass extends ValidationObject {
         name: string;
 
-        constructor(params: { name: string }) {
+        constructor(attrs: { name: string }) {
           super();
-          this.name = params.name;
+          this.name = attrs.name;
         }
 
         validation() {
@@ -159,6 +159,11 @@ describe("ValidationObject", () => {
         it("#errors.entries", () => {
           expect(subject.errors.entries()).toEqual({});
         });
+
+        it("can become invalid", () => {
+          subject.name = "foo";
+          expect(subject.valid()).toEqual(false);
+        });
       });
 
       describe("when invalid", () => {
@@ -172,6 +177,11 @@ describe("ValidationObject", () => {
           expect(subject.errors.entries()).toEqual({
             name: ["must be longer than 10 characters"],
           });
+        });
+
+        it("can become valid", () => {
+          subject.name = "0123456789";
+          expect(subject.valid()).toEqual(true);
         });
       });
     });
@@ -197,6 +207,11 @@ describe("ValidationObject", () => {
         it("#errors.entries", () => {
           expect(subject.errors.entries()).toEqual({});
         });
+
+        it("can become invalid", () => {
+          subject.name = "foo";
+          expect(subject.valid()).toEqual(false);
+        });
       });
 
       describe("when invalid", () => {
@@ -210,6 +225,11 @@ describe("ValidationObject", () => {
           expect(subject.errors.entries()).toEqual({
             name: ["must be longer than 10 characters"],
           });
+        });
+
+        it("can become valid", () => {
+          subject.name = "0123456789";
+          expect(subject.valid()).toEqual(true);
         });
       });
     });

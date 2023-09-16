@@ -25,11 +25,60 @@
 
 ## What is this? 🧐
 
-Coming Soon!
+A validation library for JavaScript objects.
 
 ## Examples 🚀
 
-Coming Soon!
+### Shorhand Variant
+
+```ts
+import { validationObject } from "validation-object";
+
+interface User {
+  name: string;
+}
+
+const User = validationObject<User>((obj) => {
+  obj.validates("name", (attr) =>
+    attr.length < 10 ? "must be longer than 10 characters" : undefined,
+  );
+});
+
+const user = new User({ name: "foo" });
+user.valid(); // false
+user.errors.entries(); // { name: ["must be longer than 10 characters"] }
+
+user.name = "0123456789";
+user.valid(); // true
+```
+
+### Class Variant
+
+```ts
+import { ValidationObject } from "validation-object";
+
+class User extends ValidationObject {
+  name: string;
+
+  constructor(attrs: { name: string }) {
+    super();
+    this.name = attrs.name;
+  }
+
+  validation() {
+    this.validates("name", (attr) =>
+      attr.length < 10 ? "must be longer than 10 characters" : undefined,
+    );
+  }
+}
+
+const user = new User({ name: "foo" });
+user.valid(); // false
+user.errors.entries(); // { name: ["must be longer than 10 characters"] }
+
+user.name = "0123456789";
+user.valid(); // true
+```
 
 ## Installation & Usage 📦
 
@@ -47,3 +96,7 @@ PR's and issues welcomed! For more guidance check out [CONTRIBUTING.md](https://
 ## Licensing 📃
 
 See the project's [MIT License](https://github.com/tatethurston/validation-object/blob/main/LICENSE).
+
+```
+
+```
