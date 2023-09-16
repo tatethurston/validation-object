@@ -8,4 +8,5 @@ module.exports = {
   moduleNameMapper: {
     "(.+)\\.jsx?": "$1",
   },
+  prettierPath: null,
 };

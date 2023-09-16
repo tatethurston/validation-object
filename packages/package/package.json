@@ -1,12 +1,12 @@
 {
-  "name": "PACKAGE_NAME",
+  "name": "validation-object",
   "version": "0.0.1",
-  "description": "PACKAGE_DESCRIPTION",
+  "description": "Validation library for JavaScript objects",
   "license": "MIT",
   "author": "Tate <tatethurston@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tatethurston/PACKAGE_NAME"
+    "url": "https://github.com/tatethurston/Validation Object"
   },
   "scripts": {
     "build:commonjs": "true",
